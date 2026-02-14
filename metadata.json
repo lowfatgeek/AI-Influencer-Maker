@@ -1,0 +1,5 @@
+{
+  "name": "AI Influencer Maker",
+  "description": "Generate photorealistic AI influencer images with customizable attributes using the Pollinations API.",
+  "requestFramePermissions": []
+}
