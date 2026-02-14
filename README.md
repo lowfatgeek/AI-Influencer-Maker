@@ -1,4 +1,6 @@
-# AI Influencer Generator
+# AI Influencer Maker
+
+[![Built with Pollinations](https://img.shields.io/badge/Built%20with-Pollinations-8a2be2?style=for-the-badge&logo=data:image/svg+xml,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20124%20124%22%3E%3Ccircle%20cx%3D%2262%22%20cy%3D%2262%22%20r%3D%2262%22%20fill%3D%22%23ffffff%22/%3E%3C/svg%3E&logoColor=white&labelColor=6a0dad)](https://pollinations.ai/)
 
 A React application that generates photorealistic AI influencer images with customizable attributes using the Google Gemini API (Imagen) and Pollinations API.
 
@@ -75,6 +77,10 @@ This project is configured to deploy easily to Vercel.
 - **Frontend**: React 19, TypeScript, Vite
 - **Styling**: Tailwind CSS
 - **AI**: Google GenAI SDK (@google/genai), Pollinations API
+
+## Credits
+
+- **Image Generation**: [Pollinations.ai](https://pollinations.ai/) - Free open-source AI image generation.
 
 ## License
 
