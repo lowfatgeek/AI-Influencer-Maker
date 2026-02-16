@@ -69,6 +69,11 @@ const InputForm: React.FC<InputFormProps> = ({ formData, onChange, onGenerate, i
        if (!currentModelValid) {
            newData.hairModel = validHairModels[0]?.value || '';
        }
+       
+       // Force mode to No Hijab if Male is selected
+       if (value === 'Male') {
+         newData.mode = 'No Hijab';
+       }
     }
     
     onChange(newData);
@@ -100,19 +105,21 @@ const InputForm: React.FC<InputFormProps> = ({ formData, onChange, onGenerate, i
       <div className="space-y-6 overflow-y-auto pr-2 custom-scrollbar -mr-2 pb-28">
         
         {/* Basic Info Group */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className={`grid grid-cols-1 ${formData.gender === 'Female' ? 'md:grid-cols-2' : ''} gap-5`}>
             <SelectField 
                 label="Gender" 
                 value={formData.gender} 
                 onChange={(e) => handleChange('gender', e.target.value as Gender)}
                 options={[{label: 'Female', value: 'Female'}, {label: 'Male', value: 'Male'}]}
             />
-             <SelectField 
-                label="Mode" 
-                value={formData.mode} 
-                onChange={(e) => handleChange('mode', e.target.value as Mode)}
-                options={[{label: 'No Hijab', value: 'No Hijab'}, {label: 'Hijab', value: 'Hijab'}]}
-            />
+             {formData.gender === 'Female' && (
+                 <SelectField 
+                    label="Mode" 
+                    value={formData.mode} 
+                    onChange={(e) => handleChange('mode', e.target.value as Mode)}
+                    options={[{label: 'No Hijab', value: 'No Hijab'}, {label: 'Hijab', value: 'Hijab'}]}
+                />
+             )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
