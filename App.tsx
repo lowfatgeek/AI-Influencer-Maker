@@ -33,9 +33,9 @@ const App: React.FC = () => {
       const { promptEn, promptId, promptLong } = buildPrompts(formData);
 
       // Determine which Pollinations model to use
-      // Directly use the selected value from dropdown (zimage or imagen-4)
+      // Directly use the selected value from dropdown (zimage or klein)
       const pollinationModel = formData.modelAI;
-      const displayModelName = formData.modelAI === 'imagen-4' ? 'Google Imagen 4' : 'Z-Image Turbo';
+      const displayModelName = formData.modelAI === 'klein' ? 'FLUX.2 Klein 4B' : 'Z-Image Turbo';
 
       // 2. Generate Seeds
       const seedA = Math.floor(Math.random() * 1000000);

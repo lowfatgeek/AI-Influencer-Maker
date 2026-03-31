@@ -1,7 +1,7 @@
 export type Gender = 'Female' | 'Male';
 export type Mode = 'Hijab' | 'No Hijab';
 export type AspectRatio = '9:16' | '16:9';
-export type ModelAI = 'zimage' | 'imagen-4';
+export type ModelAI = 'zimage' | 'klein';
 export type ShotType = 'Half-body' | 'Full-body';
 
 export interface HairModelOption {

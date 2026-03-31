@@ -95,5 +95,5 @@ export const BACKGROUND_OPTIONS: SelectOption[] = [
 
 export const MODEL_OPTIONS: SelectOption[] = [
   { label: 'Z-Image Turbo', value: 'zimage' },
-  { label: 'Google Imagen 4', value: 'imagen-4' },
+  { label: 'FLUX.2 Klein 4B', value: 'klein' },
 ];
