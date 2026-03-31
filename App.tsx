@@ -45,21 +45,41 @@ const App: React.FC = () => {
       const urlA = generateImageUrl(promptEn, pollinationModel, formData.aspectRatio, seedA);
       const urlB = generateImageUrl(promptEn, pollinationModel, formData.aspectRatio, seedB);
 
-      // 4. Update State
+      // Helper function to fetch image and create Object URL
+      const fetchAsBlobUrl = async (url: string) => {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Failed to fetch image: ${response.statusText}`);
+        const blob = await response.blob();
+        return URL.createObjectURL(blob);
+      };
+
+      // Fetch both images concurrently
+      const [blobUrlA, blobUrlB] = await Promise.all([
+        fetchAsBlobUrl(urlA),
+        fetchAsBlobUrl(urlB)
+      ]);
+
+      // Cleanup previous blob URLs to prevent memory leaks
+      if (result) {
+        result.images.forEach(img => {
+          if (img.url.startsWith('blob:')) {
+            URL.revokeObjectURL(img.url);
+          }
+        });
+      }
+
+      // 4. Update State with Blob URLs
       setResult({
         images: [
-          { url: urlA, seed: seedA, model: displayModelName },
-          { url: urlB, seed: seedB, model: displayModelName },
+          { url: blobUrlA, seed: seedA, model: displayModelName },
+          { url: blobUrlB, seed: seedB, model: displayModelName },
         ],
         promptEn,
         promptId,
         promptLong,
       });
 
-      // Simulate delay for UI polish (since URL generation is instant)
-      setTimeout(() => {
-          setIsLoading(false);
-      }, 1500);
+      setIsLoading(false);
 
     } catch (error: any) {
       console.error("Error generating images:", error);
